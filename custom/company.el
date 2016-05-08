@@ -10,3 +10,14 @@
 (require 'cc-mode)
 (define-key c-mode-map  (kbd "<C-tab>") 'company-complete)
 (define-key c++-mode-map (kbd "<C-tab>") 'company-complete)
+
+
+(defvar company-c-headers-modes
+  `(
+    (c-mode     . ,(rx ".h" line-end))
+    (c++-mode   . ,(rx (or (: line-start (one-or-more (in "A-Za-z0-9_")))
+                           (or ".h" ".hpp" ".hxx" ".hh" "Object"))
+                       line-end))
+    (objc-mode  . ,(rx ".h" line-end))
+    )
+  "Assoc list of supported major modes and associated header file names.")
